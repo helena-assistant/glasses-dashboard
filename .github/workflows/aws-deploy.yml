@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Uses Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -45,7 +45,7 @@ jobs:
         run: |
           echo Build completed on `date`
           echo Uploading s3
-          cd out
+          cd build
           aws s3 sync --delete . ${{ secrets.GLASSES_DASHBOARD_AWS_BUCKET }}
 
       - name: Invalidate Cache
