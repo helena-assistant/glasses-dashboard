@@ -46,7 +46,7 @@ jobs:
           echo Build completed on `date`
           echo Uploading s3
           cd build
-          aws s3 sync --delete . ${{ secrets.GLASSES_DASHBOARD_AWS_BUCKET }}
+          aws s3 cp . ${{ secrets.GLASSES_DASHBOARD_AWS_BUCKET }}
 
       - name: Invalidate Cache
         id: invalidate_cache
