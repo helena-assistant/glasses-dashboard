@@ -33,3 +33,7 @@
   font-size: 12px;
   margin-bottom: 2px;
 }
+
+.chart-container {
+  width: 400px;
+}
