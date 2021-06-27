@@ -1,0 +1,35 @@
+.dashboard-container {
+  padding: 42px;
+}
+
+.select-intents {
+  padding: 8px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.messages-container {
+  margin-top: 15px;
+}
+
+.message-card {
+  padding: 16px 32px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.message-card .message-item {
+  margin-right: 20px;
+  display: grid;
+}
+
+.message-item label {
+  font-weight: bold;
+  color: lightslategrey;
+  font-size: 12px;
+  margin-bottom: 2px;
+}

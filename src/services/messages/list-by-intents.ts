@@ -1,16 +1,18 @@
 import http from "src/infra/http";
+import { Message } from "src/model";
 
-export const listMessagesByIntent = (mainIntent: string) => {
-  const API_URL = process.env.GLASSES_API_URL;
-  const { get } = http(API_URL);
-
+export const listMessagesByIntent = async (
+  mainIntent: string
+): Promise<Message[]> => {
   const query = new URLSearchParams({
     mainIntent,
   });
 
   try {
-    return get(`/list${query}`);
+    const { body: messages } = await http.get<Message[]>(`/list?${query}`);
+    return messages;
   } catch (err) {
     console.error("Error while listing messages by intents");
+    return [];
   }
 };
