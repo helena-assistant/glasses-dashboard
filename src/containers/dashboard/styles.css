@@ -1,5 +1,7 @@
 .dashboard-container {
-  padding: 42px;
+  padding: 10px 60px;
+  display: flex;
+  flex-direction: row;
 }
 
 .select-intents {
@@ -14,9 +16,8 @@
 
 .message-card {
   padding: 16px 32px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px solid gray;
   border-radius: 8px;
-  width: 50%;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -34,6 +35,34 @@
   margin-bottom: 2px;
 }
 
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.blocks-and-chart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-bottom: 15px;
+}
+
 .chart-container {
-  width: 400px;
+  width: 300px;
+  padding: 50px;
+  border: 1px solid gray;
+}
+
+.big-chart-container {
+  width: 700px;
+  border: 1px solid gray;
+}
+
+.blocks-container .block {
+  width: 150px;
+  height: 150px;
+  padding: 16px;
+  margin-bottom: 5px;
+  border: 1px solid gray;
 }
