@@ -141,12 +141,10 @@ const DashboardContainer: React.FC<DashboardContainerProps> = ({
   return (
     <div className="dashboard-container">
       <div style={{ width: "50%", marginRight: "50px" }}>
-        <h2>Intenções</h2>
         <SelectIntent items={intents} onSelect={onSelect} />
         <ListMessages messages={messages} />
       </div>
       <div>
-        <h2>Estatisticas</h2>
         <div className="charts-container">
           <div className="blocks-and-chart">
             <Blocks data={feedBackData} />

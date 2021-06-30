@@ -1,5 +1,6 @@
 import React from "react";
 import { Doughnut, Bar } from "react-chartjs-2";
+import "./style.css";
 
 interface DoughnutChartProps {
   label: string;
@@ -85,12 +86,15 @@ const BarChart: React.FC<DoughnutChartProps> = ({
           "rgba(153, 102, 255, 1)",
           "rgba(255, 159, 64, 1)",
         ],
+        color: "rgb(206 206 206)",
         borderWidth: 1,
       },
     ],
   };
 
-  return <Bar type="bar" data={data} options={options} />;
+  return (
+    <Bar className="chart-style" type="bar" data={data} options={options} />
+  );
 };
 
 export { DoughnutChart, BarChart };
