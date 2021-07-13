@@ -1,5 +1,5 @@
 import http from "src/infra/lib/axios";
-const API_URL = process.env.REACT_APP_GLASSES_API_URL;
+const API_URL = "https://sn009i5l2l.execute-api.sa-east-1.amazonaws.com/dev";
 
 export interface HttpResponse<T> {
   statusCode: number;
