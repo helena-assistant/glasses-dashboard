@@ -86,7 +86,6 @@ const BarChart: React.FC<DoughnutChartProps> = ({
           "rgba(153, 102, 255, 1)",
           "rgba(255, 159, 64, 1)",
         ],
-        color: "rgb(206 206 206)",
         borderWidth: 1,
       },
     ],
