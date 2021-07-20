@@ -1,5 +1,5 @@
 import React from "react";
-import { Intent, Message } from "src/model";
+import { Intent, Message, Rate } from "src/model";
 import { DoughnutChart, BarChart } from "src/components/charts";
 import "./styles.css";
 
@@ -10,6 +10,7 @@ const FEEDBACK_INTENTS = ["nao-consegui-ajudar", "conseguiu-ajudar"];
 interface DashboardContainerProps {
   intents: Intent[];
   messages: Message[];
+  ratings: Rate[];
   onSelect: (event: any) => void;
 }
 
@@ -44,8 +45,14 @@ const SelectIntent: React.FC<SelectIntentsProps> = ({ items, onSelect }) => (
   </select>
 );
 
+const NoMessagesFound: React.FC = () => (
+  <div className="no-messages-found">
+    Nenhuma mensagem encontrada com essa intenção :(
+  </div>
+);
+
 const ListMessages: React.FC<ListMessagesProps> = ({ messages }) => {
-  return messages ? (
+  return messages && messages.length > 0 ? (
     <div className="messages-container">
       {messages.map((message) => (
         <div className="message-card">
@@ -65,7 +72,7 @@ const ListMessages: React.FC<ListMessagesProps> = ({ messages }) => {
       ))}
     </div>
   ) : (
-    <div>Chose a intent</div>
+    <NoMessagesFound />
   );
 };
 
@@ -130,19 +137,43 @@ const getNumberOfTimesThatHelped = (intents: Intent[]): CustomChart[] => {
   }, customChart);
 };
 
+const getRatings = (ratings: Rate[]): DataChart => {
+  const data: DataChart = {
+    labels: [],
+    chartData: [],
+  };
+
+  ratings.forEach((rate) => {
+    data.labels.push(rate.pk.toString());
+    data.chartData.push(rate.counter);
+  });
+
+  return data;
+};
+
 const DashboardContainer: React.FC<DashboardContainerProps> = ({
   intents,
   messages,
+  ratings,
   onSelect,
 }) => {
   const intentsCounterData = getIntentsCounter(intents);
   const answeredRate = getAnsweredRate(intents);
   const feedBackData = getNumberOfTimesThatHelped(intents);
+  const ratingsData = getRatings(ratings);
+
   return (
     <div className="dashboard-container">
       <div style={{ width: "50%", marginRight: "50px" }}>
         <SelectIntent items={intents} onSelect={onSelect} />
         <ListMessages messages={messages} />
+        <div className="intent-chart-container">
+          <BarChart
+            label="Intenções"
+            labels={intentsCounterData.labels}
+            chartData={intentsCounterData.chartData}
+          />
+        </div>
       </div>
       <div>
         <div className="charts-container">
@@ -158,9 +189,9 @@ const DashboardContainer: React.FC<DashboardContainerProps> = ({
           </div>
           <div className="big-chart-container">
             <BarChart
-              label="Intents counter"
-              labels={intentsCounterData.labels}
-              chartData={intentsCounterData.chartData}
+              label="Avaliações"
+              labels={ratingsData.labels}
+              chartData={ratingsData.chartData}
             />
           </div>
         </div>
