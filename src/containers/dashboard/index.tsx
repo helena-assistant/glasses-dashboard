@@ -56,7 +56,10 @@ const ListMessages: React.FC<ListMessagesProps> = ({ messages }) => {
     <div className="messages-container">
       {messages.map((message) => (
         <div className="message-card">
-          <div className="message-item">
+          <div
+            className="message-item"
+            style={{ width: "-webkit-fill-available" }}
+          >
             <label>mensagem</label>
             <span>{message.user_message}</span>
           </div>
