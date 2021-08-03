@@ -108,21 +108,17 @@ const getIntentsCounter = (intents: Intent[]): DataChart => {
 const getAnsweredRate = (intents: Intent[]): DataChart => {
   const data: DataChart = {
     labels: ["Não Respondidas", "Respondidas"],
-    chartData: [],
+    chartData: [0, 0],
   };
-
-  let answeredCount = 0;
 
   for (const intent of intents) {
     if (intent.intent === NOT_ANSWERED_INTENT) {
-      data.chartData.push(intent.counter);
-      break;
+      data.chartData[0] += intent.counter;
+    } else {
+      data.chartData[1] += intent.counter;
     }
-
-    answeredCount += intent.counter;
   }
 
-  data.chartData.push(answeredCount);
   return data;
 };
 
