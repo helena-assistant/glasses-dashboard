@@ -7,6 +7,13 @@ const NOT_ANSWERED_INTENT = "nao-respondido";
 
 const FEEDBACK_INTENTS = ["nao-consegui-ajudar", "conseguiu-ajudar"];
 
+const DO_NOT_COUNT_INTENTS = [
+  "olá",
+  "conseguiu-ajudar",
+  "nao-consegui-ajudar",
+  "nao-respondido",
+];
+
 interface DashboardContainerProps {
   intents: Intent[];
   messages: Message[];
@@ -99,8 +106,11 @@ const getIntentsCounter = (intents: Intent[]): DataChart => {
   };
 
   return intents.reduce((acc, curr) => {
-    acc.labels.push(curr.name);
-    acc.chartData.push(curr.counter);
+    if (!DO_NOT_COUNT_INTENTS.includes(curr.intent)) {
+      acc.labels.push(curr.name);
+      acc.chartData.push(curr.counter);
+    }
+
     return acc;
   }, data);
 };
